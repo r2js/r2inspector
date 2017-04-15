@@ -52,8 +52,11 @@ const getPattern = (type, options, obj) => {
 };
 
 const getValidators = (type, options, obj) => {
+  const {
+    minLength, maxLength, exactLength, min, max, lt, lte, gt, gte, ne,
+  } = options;
+
   if (type === 'string' || type === 'array') {
-    const { minLength, maxLength, exactLength } = options;
     Object.assign(obj, _.pick({
       minLength, maxLength, exactLength,
     }, _.identity));
@@ -61,7 +64,6 @@ const getValidators = (type, options, obj) => {
 
   // number properties
   if (type === 'number') {
-    const { min, max, lt, lte, gt, gte, ne } = options;
     Object.assign(obj, _.pick({
       min, max, lt, lte, gt, gte, ne,
     }, _.identity));
