@@ -3,6 +3,12 @@ module.exports = (app) => {
   const inspector = app.service('Inspector');
   const ObjectId = mongoose.Schema.Types.ObjectId;
   const { Schema } = mongoose;
+
+  const votesSchema = Schema({
+    user: { type: ObjectId, ref: 'users' },
+    type: { type: String, enum: ['p', 'n'] },
+  });
+
   const schema = Schema({
     slug: { type: String },
     name: { type: String, required: true },
@@ -23,10 +29,7 @@ module.exports = (app) => {
       google: { type: String, pattern: 'url' },
     },
     workers: { type: [ObjectId], ref: 'users' },
-    votes: [{
-      user: { type: ObjectId, ref: 'users' },
-      type: { type: String, enum: ['p', 'n'] },
-    }],
+    votes: { type: [votesSchema], arrOpts: { minLength: 2 } },
   });
 
   const model = mongoose.model('test', schema);

@@ -129,6 +129,8 @@ describe('r2inspector', () => {
     expect(props.votes.items.properties.type.type).to.equal('string');
     expect(props.votes.items.properties.type.optional).to.equal(true);
     expect(props.votes.items.properties.type.eq).to.deep.equal(['p', 'n']);
+    expect(props.votes.minLength).to.equal(2);
+    expect(props.votes.optional).to.equal(true);
   });
 
   it('should create nested object', () => {

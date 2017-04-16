@@ -51,6 +51,16 @@ const getPattern = (type, options, obj) => {
   }
 };
 
+const getArrOpts = (options, props) => {
+  if (options.arrOpts) {
+    Object.assign(props, options.arrOpts);
+  }
+
+  if (!options.arrOpts || typeof options.arrOpts.optional === 'undefined') {
+    Object.assign(props, { optional: true });
+  }
+};
+
 const getValidators = (type, options, obj) => {
   const {
     minLength, maxLength, exactLength, min, max, lt, lte, gt, gte, ne,
@@ -91,17 +101,17 @@ const process = (paths, obj) => {
     }
 
     if (field.schema) {
-      _.extend(obj, {
-        [name]: {
-          type: 'array',
-          items: {
-            type: 'object',
-            strict: true,
-            properties: {},
-          },
+      const arrOpts = {
+        type: 'array',
+        items: {
+          type: 'object',
+          strict: true,
+          properties: {},
         },
-      });
+      };
 
+      getArrOpts(field.options, arrOpts);
+      _.extend(obj, { [name]: arrOpts });
       return process(
         field.schema.paths,
         obj[name].items.properties);
@@ -117,9 +127,7 @@ const process = (paths, obj) => {
       props.type = 'array';
       props.items = { type: arrType };
       options = Object.assign(field.caster.options, field.options);
-      if (options.arrOpts) {
-        Object.assign(props, options.arrOpts);
-      }
+      getArrOpts(options, props);
     }
 
     const getType = arrType || type;
