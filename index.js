@@ -17,11 +17,12 @@ const getOptional = (options, obj) => {
   }
 };
 
-const getObjectId = (type, obj) => {
+const getObjectId = (type, options, obj) => {
   if (type === 'objectid') {
     Object.assign(obj, {
       type: 'string',
       $objectId: true,
+      ref: options.ref,
     });
   }
 };
@@ -134,7 +135,7 @@ const process = (paths, obj) => {
     const getOpts = options || field.options;
     const getProps = props.items || props;
     getOptional(getOpts, getProps);
-    getObjectId(getType, getProps);
+    getObjectId(getType, getOpts, getProps);
     getAllowHtml(getType, field, getOpts, getProps);
     getPattern(getType, getOpts, getProps);
     getValidators(getType, getOpts, getProps);
