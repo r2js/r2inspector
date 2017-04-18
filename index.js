@@ -93,6 +93,11 @@ const getValidators = (type, options, obj) => {
   if (typeof options.default !== 'undefined') {
     Object.assign(obj, { def: options.default });
   }
+
+  // settings
+  if (typeof options.settings !== 'undefined') {
+    Object.assign(obj, { settings: options.settings });
+  }
 };
 
 const process = (paths, obj) => {
