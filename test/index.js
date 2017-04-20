@@ -138,6 +138,10 @@ describe('r2inspector', () => {
     expect(props['links.web'].optional).to.equal(true);
     expect(props['links.web'].$cleanHtml).to.equal(true);
     expect(props['links.web'].pattern).to.equal('url');
+    expect(props.links.web.type).to.equal('string');
+    expect(props.links.web.optional).to.equal(true);
+    expect(props.links.web.$cleanHtml).to.equal(true);
+    expect(props.links.web.pattern).to.equal('url');
   });
 });
 

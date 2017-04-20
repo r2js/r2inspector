@@ -1,4 +1,5 @@
 const is = require('is_js');
+const dot = require('dotty');
 const _ = require('underscore');
 
 const getOptional = (options, obj) => {
@@ -144,6 +145,11 @@ const process = (paths, obj) => {
     getAllowHtml(getType, field, getOpts, getProps);
     getPattern(getType, getOpts, getProps);
     getValidators(getType, getOpts, getProps);
+
+    // set as object for nested objects
+    if (name.includes('.')) {
+      dot.put(obj, name, props);
+    }
 
     return Object.assign(obj, { [name]: props });
   });
