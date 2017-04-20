@@ -146,9 +146,17 @@ const process = (paths, obj) => {
     getPattern(getType, getOpts, getProps);
     getValidators(getType, getOpts, getProps);
 
-    // set as object for nested objects
     if (name.includes('.')) {
-      dot.put(obj, name, props);
+      const nameArr = name.split('.');
+      if (!obj[nameArr[0]]) {
+        dot.put(obj, nameArr[0], {
+          type: 'object',
+          strict: true,
+          optional: true,
+          properties: {},
+        });
+      }
+      dot.put(obj, `${nameArr[0]}.properties.${nameArr[1]}`, getProps);
     }
 
     return Object.assign(obj, { [name]: props });
