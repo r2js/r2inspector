@@ -1,6 +1,6 @@
 {
   "name": "r2inspector",
-  "description": "",
+  "description": "Sanitization and validation schema for Mongoose models",
   "version": "1.0.5",
   "author": "Selçuk Fatih Sevinç",
   "license": "MIT",
@@ -28,7 +28,15 @@
   },
   "main": "index.js",
   "readmeFilename": "README.md",
-  "keywords": [],
+  "keywords": [
+    "r2js",
+    "r2inspector",
+    "schema",
+    "mongoose",
+    "schema-inspector",
+    "sanitization",
+    "validation"
+  ],
   "scripts": {
     "test": "mocha"
   },

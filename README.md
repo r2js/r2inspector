@@ -1,7 +1,7 @@
 <h1 align="center">r2inspector</h1>
 
 <div align="center">
-  <strong></strong>
+  <strong>Sanitization and validation schema for Mongoose models</strong>
 </div>
 
 <br />
