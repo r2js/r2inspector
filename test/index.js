@@ -20,7 +20,7 @@ const props = inspector.properties;
 describe('r2inspector', () => {
   it('should create object', () => {
     expect(inspector.type).to.equal('object');
-    expect(inspector.strict).to.equal(false);
+    expect(inspector.strict).to.equal(true);
     expect(inspector.optional).to.equal(false);
     expect(inspector.type).to.not.equal(undefined);
   });

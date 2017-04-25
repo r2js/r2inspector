@@ -5,7 +5,7 @@ module.exports = (app) => {
   const { Schema } = mongoose;
 
   const votesSchema = Schema({
-    user: { type: ObjectId, ref: 'users' },
+    user: { type: ObjectId, ref: 'user' },
     type: { type: String, enum: ['p', 'n'] },
   });
 
@@ -14,7 +14,7 @@ module.exports = (app) => {
     name: { type: String, required: true },
     description: { type: String, allowHtml: true },
     email: { type: String, pattern: 'email' },
-    user: { type: ObjectId, ref: 'users' },
+    user: { type: ObjectId, ref: 'user' },
     isEnabled: { type: String, enum: ['y', 'n'], default: 'n' },
     createdAt: { type: Date },
     workerCount: { type: Number, default: 0, lte: 1000 },
@@ -28,7 +28,7 @@ module.exports = (app) => {
       apple: { type: String, pattern: 'url' },
       google: { type: String, pattern: 'url' },
     },
-    workers: { type: [ObjectId], ref: 'users' },
+    workers: { type: [ObjectId], ref: 'user' },
     votes: { type: [votesSchema], arrOpts: { minLength: 2 } },
   });
 

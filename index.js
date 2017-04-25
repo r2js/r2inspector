@@ -108,6 +108,7 @@ const process = (paths, obj) => {
       return false;
     }
 
+    // array of objects
     if (field.schema) {
       const arrOpts = {
         type: 'array',
@@ -119,7 +120,7 @@ const process = (paths, obj) => {
       };
 
       getArrOpts(field.options, arrOpts);
-      _.extend(obj, { [name]: arrOpts });
+      Object.assign(obj, { [name]: arrOpts });
       return process(
         field.schema.paths,
         obj[name].items.properties);
@@ -171,7 +172,7 @@ module.exports = function Inspector() {
     if (!model.inspector) {
       const obj = {
         type: 'object',
-        strict: false,
+        strict: true,
         optional: false,
         properties: {},
       };
