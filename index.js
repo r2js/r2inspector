@@ -170,7 +170,7 @@ module.exports = function Inspector() {
     if (!model.inspector) {
       const obj = {
         type: 'object',
-        strict: true,
+        strict: false,
         optional: false,
         properties: {},
       };

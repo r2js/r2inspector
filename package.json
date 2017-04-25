@@ -1,7 +1,7 @@
 {
   "name": "r2inspector",
   "description": "Sanitization and validation schema for Mongoose models",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Selçuk Fatih Sevinç",
   "license": "MIT",
   "engines": {
