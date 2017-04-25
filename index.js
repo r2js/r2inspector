@@ -1,4 +1,5 @@
 const is = require('is_js');
+const traverse = require('traverse');
 const dot = require('dotty');
 const _ = require('underscore');
 
@@ -177,6 +178,15 @@ module.exports = function Inspector() {
 
       process(model.schema.paths, obj.properties);
       model.inspector = obj;
+
+      const updateObj = JSON.parse(JSON.stringify(obj));
+      traverse(updateObj).forEach(function (x) { // eslint-disable-line
+        if (typeof x.optional !== 'undefined') {
+          this.update(Object.assign(x, { optional: true }));
+        }
+      });
+
+      model.inspectorUpdate = updateObj;
     }
   };
 };
